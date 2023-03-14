@@ -1,2 +1,14 @@
+D:\github\qaq-public\qaq-base-java\src\main\java\com\qaq\base\utils\ObjectUtils.java
+D:\github\qaq-public\qaq-base-java\src\main\java\com\qaq\base\enums\PermissionEnum.java
+D:\github\qaq-public\qaq-base-java\src\main\java\com\qaq\base\intercepter\AuthInterceptor.java
+D:\github\qaq-public\qaq-base-java\src\main\java\com\qaq\base\model\Auth.java
+D:\github\qaq-public\qaq-base-java\src\main\java\com\qaq\base\utils\DateUtils.java
+D:\github\qaq-public\qaq-base-java\src\main\java\com\qaq\base\exception\UnAuthorizedException.java
+D:\github\qaq-public\qaq-base-java\src\main\java\com\qaq\base\model\AuthResult.java
+D:\github\qaq-public\qaq-base-java\src\main\java\com\qaq\base\model\Token.java
+D:\github\qaq-public\qaq-base-java\src\main\java\com\qaq\base\aspect\PermissionCheckAspect.java
+D:\github\qaq-public\qaq-base-java\src\main\java\com\qaq\base\annotation\CheckPermission.java
 D:\github\qaq-public\qaq-base-java\src\main\java\com\qaq\base\response\ApiResponse.java
-D:\github\qaq-public\qaq-base-java\src\main\java\com\qaq\base\Millionaire.java
+D:\github\qaq-public\qaq-base-java\src\main\java\com\qaq\base\utils\HttpContextUtils.java
+D:\github\qaq-public\qaq-base-java\src\main\java\com\qaq\base\utils\PermissionChecker.java
+D:\github\qaq-public\qaq-base-java\src\main\java\com\qaq\base\enums\CheckType.java
