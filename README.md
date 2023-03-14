@@ -1,7 +1,15 @@
 # qaq-base-java
 
-qaq 的 java 公用代码  
+qaq 的 java 公用代码，旨在让 QAQ 开发者便捷的调用 QAQ 开放 API。
 [发布 Maven 包的正确姿势](https://zhuanlan.zhihu.com/p/141676033)
+
+<!-- toc -->
+
+- [安装](#安装)
+- [加入答疑群](#加入答疑群)
+- [License](#License)
+
+<!-- tocstop -->
 
 ## 安装
 
@@ -33,3 +41,11 @@ qaq 的 java 公用代码
     </dependencies>
 </project>
 ```
+
+## 加入答疑群
+
+[单击加入答疑群](https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=828s731f-83f2-400a-b093-04667ca93d4c)
+
+## License
+
+使用 MIT
