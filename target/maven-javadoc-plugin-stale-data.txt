@@ -1,0 +1,45 @@
+@options
+@packages
+-classpath
+'C:/Users/15656/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'17'
+-sourcepath
+'D:/github/qaq-public/qaq-base-java/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2023. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'D:/github/qaq-public/qaq-base-java/target/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'qaq-base-java 1.0.0 API'
+-use
+-version
+-windowtitle
+'qaq-base-java 1.0.0 API'
+com.qaq.base
+C:\Users\15656\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar = 1524754281418
+D:\github\qaq-public\qaq-base-java\src\main\java = 1678796381742
+D:\github\qaq-public\qaq-base-java\target\apidocs\allclasses-index.html = 1678797069610
+D:\github\qaq-public\qaq-base-java\target\apidocs\allpackages-index.html = 1678797069618
+D:\github\qaq-public\qaq-base-java\target\apidocs\element-list = 1678797069535
+D:\github\qaq-public\qaq-base-java\target\apidocs\help-doc.html = 1678797069656
+D:\github\qaq-public\qaq-base-java\target\apidocs\index-all.html = 1678797069637
+D:\github\qaq-public\qaq-base-java\target\apidocs\index.html = 1678797069640
+D:\github\qaq-public\qaq-base-java\target\apidocs\jquery-ui.overrides.css = 1678797069723
+D:\github\qaq-public\qaq-base-java\target\apidocs\member-search-index.js = 1678797069623
+D:\github\qaq-public\qaq-base-java\target\apidocs\module-search-index.js = 1678797069620
+D:\github\qaq-public\qaq-base-java\target\apidocs\overview-tree.html = 1678797069578
+D:\github\qaq-public\qaq-base-java\target\apidocs\package-search-index.js = 1678797069621
+D:\github\qaq-public\qaq-base-java\target\apidocs\script.js = 1678797069672
+D:\github\qaq-public\qaq-base-java\target\apidocs\search.js = 1678797069678
+D:\github\qaq-public\qaq-base-java\target\apidocs\stylesheet.css = 1678797069660
+D:\github\qaq-public\qaq-base-java\target\apidocs\tag-search-index.js = 1678797069624
+D:\github\qaq-public\qaq-base-java\target\apidocs\type-search-index.js = 1678797069622
