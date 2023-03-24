@@ -19,8 +19,7 @@ public enum PermissionEnum {
 
     @JsonCreator
     public static PermissionEnum fromString(String permissionStr) {
-        System.out.println(permissionStr);
-        for (PermissionEnum permission : PermissionEnum.values()) {
+        for (var permission : PermissionEnum.values()) {
             if (permission.value.equals(permissionStr)) {
                 return permission;
             }

@@ -10,9 +10,9 @@ import com.qaq.base.enums.PermissionEnum;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CheckPermission {
-    String value() default "";
+    String value() default "projectId";
 
     CheckType type();
 
-    PermissionEnum permission();
+    String permission();
 }

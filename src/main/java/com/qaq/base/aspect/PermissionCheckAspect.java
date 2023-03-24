@@ -1,5 +1,6 @@
 package com.qaq.base.aspect;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.CodeSignature;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import com.qaq.base.utils.PermissionChecker;
@@ -20,24 +22,30 @@ import com.qaq.base.enums.CheckType;
 @Aspect
 public class PermissionCheckAspect {
 
-    private PermissionChecker permissionChecker = new PermissionChecker();
-
-    @Pointcut("@annotation(checkPermission) && execution(* *(..))")
-    public void readCheckerPoint(CheckPermission checkPermission) {
+    @Pointcut("@annotation(com.qaq.base.annotation.CheckPermission)")
+    public void readCheckerPoint() {
     }
 
-    @Before("readCheckerPoint(checkPermission)")
-    public void advice(JoinPoint joinPoint, CheckPermission checkPermission) {
+    @Before("readCheckerPoint()")
+    public void advice(JoinPoint joinPoint) {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
                 .getRequest();
         Auth auth = (Auth) request.getAttribute("auth");
+        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        Method method = methodSignature.getMethod();
+        CheckPermission checkPermission = method.getAnnotation(CheckPermission.class);
         String val = checkPermission.value();
-        String id = val.isEmpty() ? null : getIdFromMethodArgs(joinPoint, val);
-        PermissionEnum permissionNeed = checkPermission.permission();
-        CheckType checkType = checkPermission.type();
-        switch (checkType) {
+        String projectId = val.isEmpty() ? null : getIdFromMethodArgs(joinPoint, val);
+        String permissionNeed = checkPermission.permission();
+        switch (checkPermission.type()) {
             case PROJECT_ID:
-                permissionChecker.checkWithProjectId(auth, permissionNeed, id);
+                PermissionChecker.checkWithProjectId(auth, permissionNeed, projectId);
+                break;
+            case ADMIN:
+                PermissionChecker.checkAdmin(auth, permissionNeed);
+                break;
+            case APP_NAME:
+                PermissionChecker.checkAppAdmin(auth, permissionNeed, projectId);
                 break;
             default:
                 throw new RuntimeException("not define this checkType!!!");

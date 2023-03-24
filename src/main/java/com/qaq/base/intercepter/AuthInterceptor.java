@@ -1,9 +1,10 @@
 package com.qaq.base.intercepter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qaq.base.exception.UnAuthorizedException;
 import com.qaq.base.model.Auth;
-import com.qaq.base.model.AuthResult;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.qaq.base.model.login.Token;
+import com.qaq.base.model.uniauth.AuthResult;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -11,32 +12,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
 import java.util.Base64;
-import java.util.List;
-import com.qaq.base.enums.PermissionEnum;
-import com.qaq.base.model.Token;
 
 @Slf4j
 public class AuthInterceptor implements HandlerInterceptor {
 
     private static final Base64.Decoder base64UrlDecoder = Base64.getUrlDecoder();
-    private boolean fakeCheck = true;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        Auth auth = new Auth();
-        if (fakeCheck) {
-            List<PermissionEnum> adminPermissions = Arrays.asList(PermissionEnum.READ, PermissionEnum.WRITE,
-                    PermissionEnum.DELETE);
-            auth.setAll(adminPermissions);
-            auth.setEmail("15656564262@163.com");
-            auth.setName("李白");
-        } else {
-            var tokenStr = request.getHeader("X-Gateway-Token");
-            var permissionStr = request.getHeader("X-Gateway-Permission");
-            auth = getAuth(tokenStr, permissionStr);
-        }
+
+        var tokenStr = request.getHeader("X-Gateway-Token");
+        var permissionStr = request.getHeader("X-Gateway-Permission");
+        var auth = getAuth(tokenStr, permissionStr);
         request.setAttribute("auth", auth);
         return true;
     }
@@ -58,9 +46,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         if (!tokenStr.trim().isEmpty()) {
             try {
                 var token = objectMapper.readValue(base64UrlDecoder.decode(tokenStr), Token.class);
-                auth.setName(token.getFullname());
-                auth.setEmail(token.getEmail());
-                auth.setUserid(token.getUserid());
+                auth.setToken(token);
             } catch (Exception e) {
                 log.error("decode the X-Gateway-Token header failed. string: {}, ex:{}", tokenStr, e);
                 e.printStackTrace();
@@ -72,10 +58,9 @@ public class AuthInterceptor implements HandlerInterceptor {
         }
         if (!permissionStr.trim().isEmpty()) {
             try {
-                AuthResult authResult = objectMapper.readValue(base64UrlDecoder.decode(permissionStr),
+                var authResult = objectMapper.readValue(base64UrlDecoder.decode(permissionStr),
                         AuthResult.class);
-                auth.setAll(authResult.getApp());
-                auth.setProject(authResult.getProject());
+                auth.setAuthResult(authResult);
             } catch (Exception e) {
                 log.error("decode the X-Gateway-Permission header failed. string: {}, ex:{}", permissionStr, e);
                 e.printStackTrace();
