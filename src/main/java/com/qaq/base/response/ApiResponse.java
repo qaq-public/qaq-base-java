@@ -20,4 +20,25 @@ public class ApiResponse<T> {
     @JsonProperty("data")
     private T data;
 
+    public ApiResponse(int code, String message, T data) {
+        this.success = code == 0;
+        this.code = code;
+        this.message = message;
+        this.data = data;
+    }
+
+    public ApiResponse(String message, T data) {
+        this.success = true;
+        this.code = 0;
+        this.message = message;
+        this.data = data;
+    }
+
+    public ApiResponse(T data) {
+        this.success = true;
+        this.code = 0;
+        this.message = "";
+        this.data = data;
+    }
+
 }
